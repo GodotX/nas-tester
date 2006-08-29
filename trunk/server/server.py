@@ -36,7 +36,10 @@ class bcastlistener(threading.Thread):
 			#cur_y = cur_y + 1
 			#scr.move(0,0)
 			#scr.refresh()
-bcastlistener().start()
+bcast_t = bcastlistener()
+bcast_t.setDaemon(1)
+bcast_t.start()
+
 while 1:
 	print "doing something else"
 	time.sleep(random.randint(10, 100) / 1000.0)
