@@ -23,5 +23,28 @@ except socket.error, e:
 		print "It %s. I quit." % e
 		sys.exit(1)
 
+print "Found server at %s:%s" % (address[0], address[1])
+s.close
 
-print "Received from %s: %s" % (address, buf)
+print "Opening TCP connection with server:"
+
+dest = (address[0], 9701)
+print "  \-Creating TCP socket... \t",
+
+try: 
+	TCPsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+except socket.error, e:
+	print "ERROR\n *** Problem sir: %s ***" % e
+	sys.exit(1)
+
+print "done."
+
+print "  \-Connecting to server... \t",
+
+try:
+	TCPsock.connect(dest)
+except socket.error, e:
+	print "ERROR\n *** Problem sir: %s ***" % e[1]
+	sys.exit(1)
+
+print "done."
